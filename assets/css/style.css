@@ -3,3 +3,14 @@ body {
   background-repeat: no-repeat;
   background-size: auto;
 }
+
+.jumbotron {
+  background-image: url("../images/trivia-game.png");
+  color: #e6ecff;
+  text-shadow: #010616;
+}
+
+.container {
+  background-color: #e6ecff;
+  color: #010616;
+}
