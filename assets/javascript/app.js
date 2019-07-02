@@ -100,8 +100,12 @@ $(document).ready(function () {
             // Add div to container
             var questionRow = $("<div>");
             questionRow.addClass("row justify-content-md-center");
-            questionRow = questionRow.append(questionItem);
+            questionRow.attr("id", "trivia_question_row" + i);
             $(".container").append(questionRow);
+            var questionCol = $("<div>");
+            questionCol.addClass("col-md-auto");
+            questionCol = questionCol.append(questionItem);
+            $("#trivia_question_row" + i).append(questionCol);
             //***************************************************************************************** */
             // Create variable for the first div for a bootstrap form-check-inline row with all the choices
             // Add class="row justify-content-md-center" for the first div
