@@ -192,10 +192,34 @@ $(document).ready(function () {
                     choicesRowD5 = choicesRowD5.append(choiceItem);
                     $("#D3" + i + j).append(choicesRowD5);
                 }
+
+
             }
 
         }
+        //Create the "Done" button
+        if ($("#doneRow").length[0]) {
+            console.log("Done Button" + " Exists");
+        } else {
+            console.log("Done Button" + " Does Not Exist");
+            var doneButtonRow = $("<div>");
+            doneButtonRow.addClass("row justify-content-md-center");
+            doneButtonRow.attr("id", "doneRow");
+            $(".container").append(doneButtonRow);
 
+            var doneButtonCol = $("<div>");
+            doneButtonCol.addClass("col-md-auto");
+            doneButtonCol.attr("id", "doneCol");
+            $("#doneRow").append(doneButtonCol);
+
+            var doneButton = $("<button>");
+            doneButton.attr("id", "doneButton");
+            var doneItem = $("<p>");
+            doneItem.attr("class", "display_done");
+            doneItem.html("Done");
+            doneButton = doneButton.append(doneItem);
+            $("#doneCol").append(doneButton);
+        }
         /* ********************************************* Timing *********************************************************** */
         triviaTimer = function () {
             if (thisvalue.questions[thisvalue.current]) {

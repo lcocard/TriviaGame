@@ -46,3 +46,14 @@ div > p {
 .display_timer {
   color: #e60000;
 }
+
+#doneButton {
+  padding: 1rem;
+  margin: 1.5rem;
+  height: 6rem;
+  width: 30rem;
+  font-family: "Merriweather", serif;
+  font-size: 2rem;
+  color: #e60000;
+  text-shadow: #05121b;
+}
