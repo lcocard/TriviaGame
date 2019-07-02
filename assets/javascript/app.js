@@ -219,7 +219,7 @@ $(document).ready(function () {
             var doneButton = $("<button>");
             doneButton.attr("id", "doneButton");
             var doneItem = $("<p>");
-            doneItem.attr("class", "display_done");
+            doneItem.attr("id", "display_done");
             doneItem.html("Done");
             doneButton = doneButton.append(doneItem);
             $("#doneCol").append(doneButton);
