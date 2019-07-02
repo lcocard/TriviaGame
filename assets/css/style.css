@@ -15,12 +15,13 @@ body {
 }
 
 #start_button {
-  height: 3em;
-  width: 50vw;
+  /*height: 3em;*/
+  width: 90vw;
   font-family: "Merriweather", serif;
   font-size: 2em;
   color: #e6ecff;
   text-shadow: #05121b;
+  background-image: url("../images/trivia-game-jumbotron.png");
 }
 
 .container {
@@ -46,12 +47,13 @@ div > p {
 }
 
 #doneButton {
-  padding: 1em;
+  padding-top: 0.5em;
   margin: 1.5em;
-  height: 3em;
-  width: 50vw;
+  /*height: 3em;*/
+  width: 90vw;
   font-family: "Merriweather", serif;
-  font-size: 2em;
+  font-size: 2rem;
   font-weight: bold;
   text-shadow: #05121b;
+  background-image: url("../images/trivia-game-jumbotron.png");
 }

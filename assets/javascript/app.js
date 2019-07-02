@@ -218,7 +218,7 @@ $(document).ready(function () {
 
             var doneButton = $("<button>");
             doneButton.attr("type", "button");
-            doneButton.addClass("btn btn-outline-primary");
+            doneButton.addClass("btn btn-outline-dark");
             doneButton.attr("id", "doneButton");
             var doneItem = $("<p>");
             doneItem.attr("id", "display_done");
