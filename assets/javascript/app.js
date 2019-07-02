@@ -217,6 +217,8 @@ $(document).ready(function () {
             $("#doneRow").append(doneButtonCol);
 
             var doneButton = $("<button>");
+            doneButton.attr("type", "button");
+            doneButton.addClass("btn btn-outline-primary");
             doneButton.attr("id", "doneButton");
             var doneItem = $("<p>");
             doneItem.attr("id", "display_done");
