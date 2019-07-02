@@ -1,7 +1,7 @@
 body {
   background-image: url("../images/trivia-game.png");
   background-repeat: no-repeat;
-  background-size: auto;
+  background-size: cover;
 }
 
 .jumbotron {
@@ -13,4 +13,14 @@ body {
 .container {
   background-color: #e6ecff;
   color: #010616;
+}
+
+div > p {
+  font-family: "Merriweather", serif;
+  font-size: 2rem;
+  color: #010616;
+}
+
+.form-check-label > p {
+  margin-bottom: 0;
 }
