@@ -3,22 +3,30 @@
 body {
   background-image: url("../images/trivia-game.png");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: auto;
 }
 
 .jumbotron {
   font-family: "Merriweather", serif;
   font-size: 3.5rem;
   color: #010616;
-  /*background-color: #0089cd;*/
   background-image: url("../images/trivia-game-jumbotron.png");
   color: #e6ecff;
   text-shadow: #05121b;
 }
 
+#start_button {
+  height: 6rem;
+  width: 30rem;
+  font-family: "Merriweather", serif;
+  font-size: 2rem;
+  color: #010616;
+  text-shadow: #05121b;
+}
+
 .container {
   margin-top: -55px;
-  background-color: #e6ecff;
+  /*background-color: #e6ecff;*/
   color: #010616;
 }
 
