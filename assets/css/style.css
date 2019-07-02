@@ -10,7 +10,8 @@ body {
   font-family: "Merriweather", serif;
   font-size: 3.5rem;
   color: #010616;
-  background-color: #0089cd;
+  /*background-color: #0089cd;*/
+  background-image: url("../images/trivia-game-jumbotron.png");
   color: #e6ecff;
   text-shadow: #05121b;
 }
