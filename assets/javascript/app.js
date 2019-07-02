@@ -131,7 +131,7 @@ for (var i = 0; i < thisvalue.questions.length; i++) {
         }
         // Create variable for 1 radio button input for the rest of the bootstrap form-check-inline row with all the choices
         // Add class="form-check-input" to the input tag
-        // Add type = "checkbox" to the input tag
+        // Add type = "radio" to the input tag
         // Add id="inlineCheckbox" + j to the input tag
         // Add "value='" + j + "'" to the input tag
         console.log("value='" + j + "'");
@@ -144,8 +144,9 @@ for (var i = 0; i < thisvalue.questions.length; i++) {
             var choicesRowD4 = $("<input>");
             choicesRowD4.addClass("form-check-input");
             choicesRowD4.attr("id", "D4" + i + j);
-            choicesRowD4.attr("type", "checkbox");
-            choicesRowD4.attr("id", "inlineCheckbox0");
+            choicesRowD4.attr("type", "radio");
+            choicesRowD4.attr("name", "inlineRadioOptions" + i);
+            choicesRowD4.attr("id", "inlineRadio" + j);
             choicesRowD4.attr("value", "" + j);
             $("#D3" + i + j).append(choicesRowD4);
         }
@@ -162,17 +163,10 @@ for (var i = 0; i < thisvalue.questions.length; i++) {
             var choicesRowD5 = $("<label>");
             choicesRowD5.addClass("form-check-label");
             choicesRowD5.attr("id", "D5" + i + j);
-            choicesRowD5.attr("for", "inlineCheckbox" + j);
+            choicesRowD5.attr("for", "inlineRadio" + j);
             choicesRowD5 = choicesRowD5.append(choiceItem);
             $("#D3" + i + j).append(choicesRowD5);
         }
-
-        // Give the row a data attribute to add the questionItem from above
-        // Add div to container
-        /*var questionRow = $("<div>")
-        questionRow.addClass("row justify-content-md-center");
-        questionRow = questionRow.append(questionItem);
-        $(".container").append(questionRow);*/
     }
 
 }
