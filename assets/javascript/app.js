@@ -17,14 +17,13 @@ $(document).ready(function () {
                 "background-color": "#e6ecff",
             });
 
-
         var thisvalue = this;
         thisvalue.userPick = null;
         thisvalue.answers = {
             correct: 0,
             incorrect: 0
         };
-        thisvalue.count = 30;
+        thisvalue.count = 120;
         thisvalue.current = 0;
         thisvalue.questions = [{
             question: "What are the names of the 'street tuffs' who harass the gang?",
@@ -68,6 +67,22 @@ $(document).ready(function () {
             correct: 1
 
         }];
+
+        //Display timer
+
+        if ($("#timer").length[0]) {
+            console.log("Timer" + " Exists");
+        } else {
+            console.log("Timer" + " Does Not Exist");
+            var timerRow = $("<div>");
+            timerRow.addClass("row justify-content-md-center");
+            timerRow.attr("id", "timer");
+            var timerItem = $("<p>");
+            timerItem.attr("class", "display_timer");
+            timerItem.html("Time remaining: " + thisvalue.count + " secs");
+            timerRow = timerRow.append(timerItem);
+            $(".container").append(timerRow);
+        }
 
         for (var i = 0; i < thisvalue.questions.length; i++) {
             // Get the question value and store it in a variable

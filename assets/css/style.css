@@ -42,3 +42,7 @@ div > p {
   font-size: 1rem;
   color: #010616;
 }
+
+.display_timer {
+  color: #e60000;
+}
