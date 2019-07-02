@@ -48,9 +48,10 @@ div > p {
 
 #doneButton {
   padding-top: 0.5em;
-  margin: 1.5em;
-  /*height: 3em;*/
-  width: 75vw;
+  margin: 1.5em 0 1.5em 0;
+  /*height: 3em;
+  display: block;*/
+  width: 90%;
   font-family: "Merriweather", serif;
   font-size: 2rem;
   font-weight: bold;

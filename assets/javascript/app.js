@@ -212,13 +212,13 @@ $(document).ready(function () {
             $(".container").append(doneButtonRow);
 
             var doneButtonCol = $("<div>");
-            doneButtonCol.addClass("col-md-auto");
+            doneButtonCol.addClass("col-md-auto w-75 p-3");
             doneButtonCol.attr("id", "doneCol");
             $("#doneRow").append(doneButtonCol);
 
             var doneButton = $("<button>");
             doneButton.attr("type", "button");
-            doneButton.addClass("btn btn-outline-dark");
+            doneButton.addClass("btn btn-outline-dark w-100 p-3");
             doneButton.attr("id", "doneButton");
             var doneItem = $("<p>");
             doneItem.attr("id", "display_done");
