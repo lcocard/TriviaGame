@@ -1,3 +1,5 @@
+/* Trivia Game - style.css*/
+
 body {
   background-image: url("../images/trivia-game.png");
   background-repeat: no-repeat;
@@ -5,12 +7,16 @@ body {
 }
 
 .jumbotron {
-  background-image: url("../images/trivia-game.png");
+  font-family: "Merriweather", serif;
+  font-size: 3.5rem;
+  color: #010616;
+  background-color: #0089cd;
   color: #e6ecff;
-  text-shadow: #010616;
+  text-shadow: #05121b;
 }
 
 .container {
+  margin-top: -55px;
   background-color: #e6ecff;
   color: #010616;
 }
@@ -23,4 +29,7 @@ div > p {
 
 .form-check-label > p {
   margin-bottom: 0;
+  font-family: "Merriweather", serif;
+  font-size: 1rem;
+  color: #010616;
 }
