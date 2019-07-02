@@ -55,5 +55,7 @@ div > p {
   font-family: "Merriweather", serif;
   font-size: 2rem;
   color: #e60000;
+  font-weight: bold;
   text-shadow: #05121b;
+  background-image: url("../images/trivia-game.png");
 }
