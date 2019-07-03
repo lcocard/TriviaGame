@@ -1,7 +1,10 @@
+/* *********************** Trivia Game - app.js ****************** */
+
 $(document).ready(function () {
     var Trivia;
     $("#start_button").click(function () {
         $(this).hide();
+        $("#log").hide();
         $('.result').remove();
         $('.container').html('');
         $(".trivia-title").html("<h1>" + " Seinfeld Trivia " + "</h1>");
@@ -11,11 +14,6 @@ $(document).ready(function () {
 
     /* ********************************************* Timing *********************************************************** */
     var thisvalue = this;
-    thisvalue.userPick = null;
-    thisvalue.answers = {
-        correct: 0,
-        incorrect: 0
-    };
     thisvalue.count = 120;
     thisvalue.current = 0;
 
@@ -69,17 +67,15 @@ $(document).ready(function () {
             setTimeout(function () {
                 stop();
             });
+            $("input[type='radio']").click(function (e) {
+                e.preventDefault();
+            });
         }
     }
 
 
     // ******************************************* Trivia *******************************
     $.fn.trivia = function () {
-        // This code will run as soon as the page loads
-        //window.onload = function () {
-
-        //$("#stop").on("click", stop);
-        //};
         $("body")
             .css({
                 "background-size": "cover",
@@ -89,14 +85,6 @@ $(document).ready(function () {
                 "background-color": "#e6ecff",
             });
 
-        /* var thisvalue = this;
-        thisvalue.userPick = null;
-        thisvalue.answers = {
-            correct: 0,
-            incorrect: 0
-        };
-        thisvalue.count = 120;
-        thisvalue.current = 0; */
         thisvalue.questions = [{
             question: "What are the names of the 'street tuffs' who harass the gang?",
             choices: ["Cedric & Bob", "Albert & Bruce", "Seth & John", "Jose & Carl"],
@@ -306,10 +294,7 @@ $(document).ready(function () {
         }
 
         /* *********************** Scoring ************************************ */
-        // Logging results:
-        /*$("input").on("click", function () {
-            $("#log").append($("input:checked").val() + " is checked!");
-        });*/
+
         var totalCorrect = 0;
         var totalNotCorrect = 0;
         var totalQuestions = thisvalue.questions.length;
@@ -317,23 +302,29 @@ $(document).ready(function () {
         $("input[type='radio']").click(function (e) {
             var questionIndexValue = $(this).attr("questionIndex");
             var choiceIndexValue = $(this).attr("choiceIndex");
-            var optionNameValue = $("input[name~='inlineRadioOptions']:checked").val();
-
+            var optionNameValue = $(this).attr("value");
+            var questionValue = thisvalue.questions[questionIndexValue].question;
+            //optionNameValue = $("input[name~='inlineRadioOptions']:checked").val();
+            //alert(optionNameValue);
             if (optionNameValue) {
 
-                console.log("Your are a optionNameValue " + optionNameValue + " questionIndexValue: " + questionIndexValue + " choiceIndexValue: " + choiceIndexValue);
+                console.log("Your chosen optionNameValue " + optionNameValue + " questionIndexValue: " + questionIndexValue + " choiceIndexValue: " + choiceIndexValue);
 
             }
             console.log("thisvalue.questions[questionIndexValue].correct = " + thisvalue.questions[questionIndexValue].correct);
             if (thisvalue.questions[questionIndexValue].correct == choiceIndexValue) {
                 console.log("This is correct!");
-                totalCorrect++
+                totalCorrect++;
+                questionIndexValuePlus1 = parseInt(questionIndexValue, 10) + 1;
+                $("#log").append("Question: " + questionValue + " Answered: " + optionNameValue + " - This is correct!");
             } else {
                 totalNotCorrect++
+                $("#log").append("Question: " + questionValue + " Answered: " + optionNameValue + " - Sorry, this is not the right answer...");
             }
             totalNotAnswered = totalQuestions - (totalCorrect + totalNotCorrect);
 
             console.log("totalNotAnswered = " + totalNotAnswered + " totalCorrect = " + totalCorrect + " totalNotCorrect = " + totalNotCorrect);
+
 
         });
 
