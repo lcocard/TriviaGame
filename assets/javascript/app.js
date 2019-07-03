@@ -78,6 +78,8 @@ $(document).ready(function () {
             $("input[type='radio']").click(function (e) {
                 e.preventDefault();
             });
+            $("#doneButton").click();
+            // initialize();
         }
     }
 
@@ -345,6 +347,7 @@ $(document).ready(function () {
             });
 
             /* ************************** Calculate the Score ************************************ */
+            //  function initialize() {
             var totalCorrect = 0;
             var totalNotCorrect = 0;
 
@@ -384,8 +387,15 @@ $(document).ready(function () {
                 .css({
                     "background-size": "auto",
                 });
+
+
+            // };
+
+
+
         });
 
     };
 
 });
+
