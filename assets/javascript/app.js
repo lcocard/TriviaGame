@@ -4,6 +4,7 @@ $(document).ready(function () {
         $(this).hide();
         $('.result').remove();
         $('.container').html('');
+        $(".trivia-title").html("<h1>" + " Seinfeld Trivia " + "</h1>");
         Trivia = new $(window).trivia();
         start();
     });
@@ -57,7 +58,7 @@ $(document).ready(function () {
         // Decrement time by 1.
         thisvalue.count--;
 
-        console.log(thisvalue.count);
+        //console.log(thisvalue.count);
 
         var converted = timeConverter(thisvalue.count);
 
@@ -70,6 +71,8 @@ $(document).ready(function () {
             });
         }
     }
+
+
     // ******************************************* Trivia *******************************
     $.fn.trivia = function () {
         // This code will run as soon as the page loads
@@ -207,6 +210,9 @@ $(document).ready(function () {
                 // Get the answer choice value and store it in a variable
                 var t_choice = (thisvalue.questions)[i].choices[j];
                 console.log("t_choice = " + (thisvalue.questions)[i].choices[j]);
+                // Get the correct choice value and store it in a variable to be added as an attribute to the radio button
+                var t_correct_choice = (thisvalue.questions)[i].correct;
+                console.log("t_correct_choice = " + (thisvalue.questions)[i].correct);
                 // Create a var to hold a <p> tag to keep one choice for answering
                 // Then give it an ID in the form t_choice0, t_choice1, ..., t_choice3 using an increment
                 // Then set the <p> tag as the value of this
@@ -245,7 +251,10 @@ $(document).ready(function () {
                     choicesRowD4.attr("type", "radio");
                     choicesRowD4.attr("name", "inlineRadioOptions" + i);
                     choicesRowD4.attr("id", "inlineRadio" + j);
-                    choicesRowD4.attr("value", "" + j);
+                    choicesRowD4.attr("value", t_choice);
+                    choicesRowD4.attr("questionIndex", i);
+                    choicesRowD4.attr("choiceIndex", j);
+                    //choicesRowD4.attr("tCorrect", t_correct_choice);
                     $("#D3" + i + j).append(choicesRowD4);
                 }
                 // Create variable for 1 label button input for the rest of the bootstrap form-check-inline row with all the choices
@@ -296,6 +305,37 @@ $(document).ready(function () {
             $("#doneCol").append(doneButton);
         }
 
+        /* *********************** Scoring ************************************ */
+        // Logging results:
+        /*$("input").on("click", function () {
+            $("#log").append($("input:checked").val() + " is checked!");
+        });*/
+        var totalCorrect = 0;
+        var totalNotCorrect = 0;
+        var totalQuestions = thisvalue.questions.length;
+        totalNotAnswered = totalQuestions;
+        $("input[type='radio']").click(function (e) {
+            var questionIndexValue = $(this).attr("questionIndex");
+            var choiceIndexValue = $(this).attr("choiceIndex");
+            var optionNameValue = $("input[name~='inlineRadioOptions']:checked").val();
+
+            if (optionNameValue) {
+
+                console.log("Your are a optionNameValue " + optionNameValue + " questionIndexValue: " + questionIndexValue + " choiceIndexValue: " + choiceIndexValue);
+
+            }
+            console.log("thisvalue.questions[questionIndexValue].correct = " + thisvalue.questions[questionIndexValue].correct);
+            if (thisvalue.questions[questionIndexValue].correct == choiceIndexValue) {
+                console.log("This is correct!");
+                totalCorrect++
+            } else {
+                totalNotCorrect++
+            }
+            totalNotAnswered = totalQuestions - (totalCorrect + totalNotCorrect);
+
+            console.log("totalNotAnswered = " + totalNotAnswered + " totalCorrect = " + totalCorrect + " totalNotCorrect = " + totalNotCorrect);
+
+        });
 
 
 
