@@ -3,18 +3,22 @@
 $(document).ready(function () {
     var Trivia;
     $("#start_button").click(function () {
-        $(this).hide();
+        $("#start_button").hide();
+        $("#log").html("");
+        $(".correct").html("");
+        $(".incorrect").html("");
+        $(".unanswered").html("");
         $("#log").hide();
         $('.result').remove();
-        $('.container').html('');
         $(".trivia-title").html("<h1>" + " Seinfeld Trivia " + "</h1>");
         Trivia = new $(window).trivia();
+        thisvalue.count = 120;
         start();
     });
 
     /* ********************************************* Timing *********************************************************** */
     var thisvalue = this;
-    thisvalue.count = 120;
+
     thisvalue.current = 0;
 
 
@@ -63,6 +67,10 @@ $(document).ready(function () {
         // Use the variable we just created to show the converted time in the "display" div.
         $("#timer").html("Time remaining: " + converted);
 
+        /* ************************************************************************* */
+        /* *********************** Stop the timer ********************************** */
+
+
         if (thisvalue.count <= 0) {
             setTimeout(function () {
                 stop();
@@ -74,7 +82,7 @@ $(document).ready(function () {
     }
 
 
-    // ******************************************* Trivia *******************************
+    /* ******************************************* Trivia ******************************* */
     $.fn.trivia = function () {
         $("body")
             .css({
@@ -293,12 +301,10 @@ $(document).ready(function () {
             $("#doneCol").append(doneButton);
         }
 
-        /* *********************** Scoring ************************************ */
+        /* *********************** Options Selection using the Radio Buttons ************************************ */
 
-        var totalCorrect = 0;
-        var totalNotCorrect = 0;
-        var totalQuestions = thisvalue.questions.length;
-        totalNotAnswered = totalQuestions;
+
+        $("#log").append("******** Summary: ******** ");
         $("input[type='radio']").click(function (e) {
             var questionIndexValue = $(this).attr("questionIndex");
             var choiceIndexValue = $(this).attr("choiceIndex");
@@ -306,33 +312,77 @@ $(document).ready(function () {
             var questionValue = thisvalue.questions[questionIndexValue].question;
             //optionNameValue = $("input[name~='inlineRadioOptions']:checked").val();
             //alert(optionNameValue);
-            if (optionNameValue) {
 
-                console.log("Your chosen optionNameValue " + optionNameValue + " questionIndexValue: " + questionIndexValue + " choiceIndexValue: " + choiceIndexValue);
-
-            }
+            console.log("Your chosen optionNameValue " + optionNameValue + " questionIndexValue: " + questionIndexValue + " choiceIndexValue: " + choiceIndexValue);
             console.log("thisvalue.questions[questionIndexValue].correct = " + thisvalue.questions[questionIndexValue].correct);
+
             if (thisvalue.questions[questionIndexValue].correct == choiceIndexValue) {
                 console.log("This is correct!");
-                totalCorrect++;
-                questionIndexValuePlus1 = parseInt(questionIndexValue, 10) + 1;
-                $("#log").append("Question: " + questionValue + " Answered: " + optionNameValue + " - This is correct!");
+                //   totalCorrect++;
+                // questionIndexValuePlus1 = parseInt(questionIndexValue, 10) + 1;
+                $("#log").append("Question: " + questionValue + " Answered: " + optionNameValue + " - This is correct! ******** ");
             } else {
-                totalNotCorrect++
-                $("#log").append("Question: " + questionValue + " Answered: " + optionNameValue + " - Sorry, this is not the right answer...");
+                //   totalNotCorrect++
+                $("#log").append("Question: " + questionValue + " Answered: " + optionNameValue + " - Sorry, this is not the right answer... ******** ");
             }
-            totalNotAnswered = totalQuestions - (totalCorrect + totalNotCorrect);
+            //totalNotAnswered = totalQuestions - (totalCorrect + totalNotCorrect);
 
-            console.log("totalNotAnswered = " + totalNotAnswered + " totalCorrect = " + totalCorrect + " totalNotCorrect = " + totalNotCorrect);
+            // console.log("totalNotAnswered = " + totalNotAnswered + " totalCorrect = " + totalCorrect + " totalNotCorrect = " + totalNotCorrect);
+
 
 
         });
 
+        /* *********************** Click the Done Button **************************************** */
+
+        $("#doneButton").click(function () {
+            // Use clearInterval to stop the count here and set the clock to not be running.
+            setTimeout(function () {
+                stop();
+            });
+            $("input[type='radio']").click(function (e) {
+                e.preventDefault();
+            });
+
+            /* ************************** Calculate the Score ************************************ */
+            var totalCorrect = 0;
+            var totalNotCorrect = 0;
+
+            /* JQuery to get all the radio buttons in the form and the checked value. */
+            $.each($("input[type='radio']").filter(":checked"), function () {
+                console.log("Name:" + this.name);
+                console.log("Value:" + $(this).val());
+                console.log("Question Row Position: " + $(this).attr("questionIndex"));
+                console.log("Correct Answer Position: " + $(this).attr("choiceIndex"))
 
 
+                var totalQuestions = thisvalue.questions.length;
+                totalNotAnswered = totalQuestions;
+                var questionIndexValue = $(this).attr("questionIndex");
+                var choiceIndexValue = $(this).attr("choiceIndex");
+                var optionNameValue = $(this).attr("value");
 
+                console.log("Your chosen optionNameValue " + optionNameValue + " questionIndexValue: " + questionIndexValue + " choiceIndexValue: " + choiceIndexValue);
+                console.log("thisvalue.questions[questionIndexValue].correct = " + thisvalue.questions[questionIndexValue].correct);
+
+                if (thisvalue.questions[questionIndexValue].correct == choiceIndexValue) {
+                    totalCorrect++;
+                } else {
+                    totalNotCorrect++
+                }
+                totalNotAnswered = totalQuestions - (totalCorrect + totalNotCorrect);
+
+            });
+            thisvalue.count = 120;
+            $("#start_button").show();
+            $('.container').html('');
+            $("#log").show();
+            $(".correct").append("Correct Answers: " + totalCorrect);
+            $(".incorrect").append("Incorrect Answers: " + totalNotCorrect);
+            $(".unanswered").append("Unanswered: " + totalNotAnswered);
+
+        });
 
     };
-
 
 });
