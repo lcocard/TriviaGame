@@ -5,9 +5,78 @@ $(document).ready(function () {
         $('.result').remove();
         $('.container').html('');
         Trivia = new $(window).trivia();
-        //Trivia.ask();
+        start();
     });
+
+    /* ********************************************* Timing *********************************************************** */
+    var thisvalue = this;
+    thisvalue.userPick = null;
+    thisvalue.answers = {
+        correct: 0,
+        incorrect: 0
+    };
+    thisvalue.count = 120;
+    thisvalue.current = 0;
+
+
+    function start() {
+
+        // Use setInterval to start the count here and set the clock to running.
+        intervalId = setInterval(count, 1000);
+    }
+
+
+    function stop() {
+
+        // Use clearInterval to stop the count here and set the clock to not be running.
+        clearInterval(intervalId);
+
+    }
+
+    function timeConverter(t) {
+
+        var minutes = Math.floor(t / 60);
+        var seconds = t - (minutes * 60);
+
+        if (seconds < 10) {
+            seconds = "0" + seconds;
+        }
+
+        if (minutes === 0) {
+            minutes = "00";
+        }
+        else if (minutes < 10) {
+            minutes = "0" + minutes;
+        }
+
+        return minutes + ":" + seconds;
+    }
+
+    function count() {
+
+        // Decrement time by 1.
+        thisvalue.count--;
+
+        console.log(thisvalue.count);
+
+        var converted = timeConverter(thisvalue.count);
+
+        // Use the variable we just created to show the converted time in the "display" div.
+        $("#timer").html("Time remaining: " + converted);
+
+        if (thisvalue.count <= 0) {
+            setTimeout(function () {
+                stop();
+            });
+        }
+    }
+    // ******************************************* Trivia *******************************
     $.fn.trivia = function () {
+        // This code will run as soon as the page loads
+        //window.onload = function () {
+
+        //$("#stop").on("click", stop);
+        //};
         $("body")
             .css({
                 "background-size": "cover",
@@ -17,14 +86,14 @@ $(document).ready(function () {
                 "background-color": "#e6ecff",
             });
 
-        var thisvalue = this;
+        /* var thisvalue = this;
         thisvalue.userPick = null;
         thisvalue.answers = {
             correct: 0,
             incorrect: 0
         };
         thisvalue.count = 120;
-        thisvalue.current = 0;
+        thisvalue.current = 0; */
         thisvalue.questions = [{
             question: "What are the names of the 'street tuffs' who harass the gang?",
             choices: ["Cedric & Bob", "Albert & Bruce", "Seth & John", "Jose & Carl"],
@@ -69,7 +138,7 @@ $(document).ready(function () {
         }];
 
         //Display timer
-
+        var converted = timeConverter(thisvalue.count);
         if ($("#timer").length[0]) {
             console.log("Timer" + " Exists");
         } else {
@@ -79,7 +148,7 @@ $(document).ready(function () {
             timerRow.attr("id", "timer");
             var timerItem = $("<p>");
             timerItem.attr("class", "display_timer");
-            timerItem.html("Time remaining: " + thisvalue.count + " secs");
+            timerItem.html("Time remaining: " + converted);
             timerRow = timerRow.append(timerItem);
             $(".container").append(timerRow);
         }
@@ -226,28 +295,13 @@ $(document).ready(function () {
             doneButton = doneButton.append(doneItem);
             $("#doneCol").append(doneButton);
         }
-        /* ********************************************* Timing *********************************************************** */
-        triviaTimer = function () {
-            if (thisvalue.questions[thisvalue.current]) {
-                $("#timer").html("Time remaining: " + "00:" + thisvalue.count + " secs");
-                $("#question_div").html(thisvalue.questions[thisvalue.current].question);
-                var choicesArr = thisvalue.questions[thisvalue.current].choices;
-                var buttonsArr = [];
-                for (var i = 0; i < choicesArr.length; i++) {
-                    var button = $('<button>');
-                    button.text(choicesArr[i]);
-                    button.attr('data-id', i);
-                    $('#choices_div').append(button);
-                }
-                window.triviaCounter = setInterval(thisvalue.timer, 1000);
-            } else {
-                $('body').append($('<div />', {
-                    text: 'Unanswered: ' + (
-                        thisvalue.questions.length - (thisvalue.answers.correct + thisvalue.answers.incorrect)),
-                    class: 'result'
-                }));
-                $('#start_button').text('Restart').appendTo('body').show();
-            }
-        };
-    }
+
+
+
+
+
+
+    };
+
+
 });
