@@ -380,7 +380,10 @@ $(document).ready(function () {
             $(".correct").append("Correct Answers: " + totalCorrect);
             $(".incorrect").append("Incorrect Answers: " + totalNotCorrect);
             $(".unanswered").append("Unanswered: " + totalNotAnswered);
-
+            $("body")
+                .css({
+                    "background-size": "auto",
+                });
         });
 
     };
