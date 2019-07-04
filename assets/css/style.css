@@ -4,6 +4,7 @@ body {
   background-image: url("../images/trivia-game.png");
   /*background-repeat: no-repeat;*/
   background-size: auto;
+  margin: 0;
 }
 
 .jumbotron {
@@ -27,11 +28,22 @@ body {
   background-image: url("../images/trivia-game-jumbotron.png");
 }
 
-.container {
-  margin-top: -55px;
-  left: auto;
-  right: auto;
-  color: #010616;
+@media (min-width: 992px) {
+  .container {
+    margin-top: -55px;
+    left: auto;
+    right: auto;
+    color: #010616;
+  }
+}
+
+@media (max-width: 992px) {
+  .container {
+    margin-top: -55px;
+    left: 0;
+    right: 0;
+    color: #010616;
+  }
 }
 
 div > p {
