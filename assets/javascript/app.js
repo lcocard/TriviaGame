@@ -320,17 +320,13 @@ $(document).ready(function () {
 
             if (thisvalue.questions[questionIndexValue].correct == choiceIndexValue) {
                 console.log("This is correct!");
-                //   totalCorrect++;
+
                 // questionIndexValuePlus1 = parseInt(questionIndexValue, 10) + 1;
                 $("#log").append("Question: " + questionValue + " Answered: " + optionNameValue + " - This is correct! ******** ");
             } else {
-                //   totalNotCorrect++
+
                 $("#log").append("Question: " + questionValue + " Answered: " + optionNameValue + " - Sorry, this is not the right answer... ******** ");
             }
-            //totalNotAnswered = totalQuestions - (totalCorrect + totalNotCorrect);
-
-            // console.log("totalNotAnswered = " + totalNotAnswered + " totalCorrect = " + totalCorrect + " totalNotCorrect = " + totalNotCorrect);
-
 
 
         });
@@ -347,7 +343,7 @@ $(document).ready(function () {
             });
 
             /* ************************** Calculate the Score ************************************ */
-            //  function initialize() {
+
             var totalCorrect = 0;
             var totalNotCorrect = 0;
 
@@ -360,7 +356,7 @@ $(document).ready(function () {
 
 
                 var totalQuestions = thisvalue.questions.length;
-                totalNotAnswered = totalQuestions;
+                totalNotAnswered = parseInt(totalQuestions, 10);
                 var questionIndexValue = $(this).attr("questionIndex");
                 var choiceIndexValue = $(this).attr("choiceIndex");
                 var optionNameValue = $(this).attr("value");
@@ -387,10 +383,6 @@ $(document).ready(function () {
                 .css({
                     "background-size": "auto",
                 });
-
-
-            // };
-
 
 
         });
