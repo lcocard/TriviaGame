@@ -34,7 +34,7 @@ body {
 
 div > p {
   font-family: "Merriweather", serif;
-  font-size: calc(12px + 1.5vw);
+  font-size: calc(10px + 1.5vw);
   color: #010616;
 }
 
