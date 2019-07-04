@@ -29,12 +29,14 @@ body {
 
 .container {
   margin-top: -55px;
+  left: auto;
+  right: auto;
   color: #010616;
 }
 
 div > p {
   font-family: "Merriweather", serif;
-  font-size: calc(10px + 1.5vw);
+  font-size: calc(16px + 1.2vw);
   color: #010616;
 }
 
